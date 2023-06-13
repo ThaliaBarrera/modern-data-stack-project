@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_customers
+    columns: 
+      - name: customer_id
+        description: Unique id that identifies a customer
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    columns:
+      - name: order_id
+        description: Unique id that identifies each order
+        tests:
+          - unique
+          - not_null
+      - name: order_status
+        description: The status of the order. It gets updated everytime there's a change in order status. It can have 8 different values.
+        tests:
+          - accepted_values:
+              values:
+                - created
+                - shipped
+                - approved
+                - canceled
+                - invoiced
+                - delivered
+                - processing
+                - unavailable
